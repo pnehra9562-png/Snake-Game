@@ -1,0 +1,153 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent scroll completely */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Body */
+body {
+  background: radial-gradient(circle at top, #020617, #000);
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* App layout */
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 10px 0;
+  flex-shrink: 0; /* 👈 shrink nahi hoga */
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 8px 0;
+  font-size: 13px;
+  color: #aaa;
+  flex-shrink: 0; /* 👈 overflow fix */
+}
+
+/* Main (center area) */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Game container */
+.game-container {
+  text-align: center;
+  max-height: 100%;
+}
+
+/* Title */
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* Logo */
+.logo {
+  font-size: 32px;
+}
+
+/* Score */
+.score {
+  font-size: 16px;
+  margin: 4px;
+  color: #ccc;
+}
+
+.score span {
+  color: #00ffcc;
+  font-weight: 600;
+}
+
+/* Game Over */
+.game-over {
+  color: red;
+  font-size: 22px;
+  text-shadow: 0 0 8px red;
+}
+
+/* Controls */
+.controls-area {
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 6px;
+}
+
+button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #00ffcc;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:last-child {
+  background: red;
+  color: white;
+}
+
+/* Board (IMPORTANT FIX) */
+.board {
+  display: grid;
+  gap: 2px;
+  margin-top: 8px;
+  justify-content: center;
+
+  max-height: 55vh; /* 👈 final perfect balance */
+}
+
+/* Cell */
+.cell {
+  width: 20px;
+  height: 20px;
+  background: #111;
+  border: 1px solid #222;
+}
+
+/* Snake */
+.snake {
+  background: limegreen;
+}
+
+/* Snake Head */
+.snake-head {
+  background: lime;
+}
+
+/* Food */
+.food {
+  background: red;
+  border-radius: 50%;
+}
