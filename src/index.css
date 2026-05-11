@@ -268,15 +268,56 @@ button:active {
     gap: 10px;
   }
 
+  /* Base Mobile Buttons */
   .mobile-controls button {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
 
     border-radius: 16px;
 
     font-size: 24px;
+    font-weight: bold;
 
     padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    border: 2px solid rgba(255, 255, 255, 0.2);
+
+    transition: 0.2s ease;
+  }
+
+  /* LEFT + RIGHT = RED */
+  .middle-controls button {
+    background: linear-gradient(135deg, #ff3b3b, #ff0000);
+
+    box-shadow:
+      0 0 12px rgba(255, 0, 0, 0.5),
+      inset 0 0 8px rgba(255, 255, 255, 0.1);
+  }
+
+  /* TOP + BOTTOM = BLUE */
+  .mobile-controls > button,
+  .middle-controls button:nth-child(2) {
+    background: linear-gradient(135deg, #00c3ff, #0066ff);
+
+    box-shadow:
+      0 0 12px rgba(0, 102, 255, 0.5),
+      inset 0 0 8px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Hover */
+  .mobile-controls button:hover {
+    transform: scale(1.08);
+  }
+
+  /* Click */
+  .mobile-controls button:active {
+    transform: scale(0.92);
   }
 
   .buttons {
