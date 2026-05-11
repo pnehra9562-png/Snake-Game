@@ -5,7 +5,9 @@ const Board = ({ snake, food }) => {
   return (
     <div
       className="board"
-      style={{ gridTemplateColumns: `repeat(${BOARD_SIZE}, 22px)` }}
+      style={{
+        gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
+      }}
     >
       {[...Array(BOARD_SIZE)].map((_, row) =>
         [...Array(BOARD_SIZE)].map((_, col) => {
@@ -14,8 +16,14 @@ const Board = ({ snake, food }) => {
           const isFood = food[0] === col && food[1] === row;
 
           let cls = "cell";
-          if (isSnake) cls += isHead ? " snake-head" : " snake";
-          if (isFood) cls += " food";
+
+          if (isSnake) {
+            cls += isHead ? " snake-head" : " snake";
+          }
+
+          if (isFood) {
+            cls += " food";
+          }
 
           return <div key={`${row}-${col}`} className={cls}></div>;
         }),

@@ -13,33 +13,45 @@ export const useSnakeGame = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [speed, setSpeed] = useState(200);
-
   const [isStarted, setIsStarted] = useState(false);
 
   const [highScore, setHighScore] = useState(
     Number(localStorage.getItem("highScore")) || 0,
   );
 
-  // 🎮 Controls
+  // Keyboard Controls
   useEffect(() => {
     const handleKey = (e) => {
       if (!isStarted) return;
 
-      if (e.key === "ArrowUp" && direction !== "DOWN") setDirection("UP");
-      if (e.key === "ArrowDown" && direction !== "UP") setDirection("DOWN");
-      if (e.key === "ArrowLeft" && direction !== "RIGHT") setDirection("LEFT");
-      if (e.key === "ArrowRight" && direction !== "LEFT") setDirection("RIGHT");
+      if (e.key === "ArrowUp" && direction !== "DOWN") {
+        setDirection("UP");
+      }
+
+      if (e.key === "ArrowDown" && direction !== "UP") {
+        setDirection("DOWN");
+      }
+
+      if (e.key === "ArrowLeft" && direction !== "RIGHT") {
+        setDirection("LEFT");
+      }
+
+      if (e.key === "ArrowRight" && direction !== "LEFT") {
+        setDirection("RIGHT");
+      }
     };
 
     window.addEventListener("keydown", handleKey);
+
     return () => window.removeEventListener("keydown", handleKey);
   }, [direction, isStarted]);
 
-  // 🧠 Game Loop (only when started)
+  // Game Loop
   useEffect(() => {
     if (!isStarted || gameOver) return;
 
     const interval = setInterval(moveSnake, speed);
+
     return () => clearInterval(interval);
   }, [snake, speed, isStarted, gameOver]);
 
@@ -52,7 +64,7 @@ export const useSnakeGame = () => {
     if (direction === "LEFT") head[0]--;
     if (direction === "RIGHT") head[0]++;
 
-    // Wall collision
+    // Wall Collision
     if (
       head[0] < 0 ||
       head[1] < 0 ||
@@ -63,7 +75,7 @@ export const useSnakeGame = () => {
       return;
     }
 
-    // Self collision
+    // Self Collision
     if (newSnake.some(([x, y]) => x === head[0] && y === head[1])) {
       setGameOver(true);
       return;
@@ -74,13 +86,16 @@ export const useSnakeGame = () => {
     // Food
     if (head[0] === food[0] && head[1] === food[1]) {
       const newScore = score + 1;
+
       setScore(newScore);
       setFood(randomFood());
 
+      // Increase speed
       if (newScore % 5 === 0) {
         setSpeed((prev) => Math.max(60, prev - 15));
       }
 
+      // High Score
       if (newScore > highScore) {
         setHighScore(newScore);
         localStorage.setItem("highScore", newScore);
@@ -92,12 +107,12 @@ export const useSnakeGame = () => {
     setSnake(newSnake);
   };
 
-  // ▶ Start
+  // Start
   const startGame = () => {
     setIsStarted(true);
   };
 
-  // 🔁 Restart
+  // Restart
   const restartGame = () => {
     setSnake(INITIAL_SNAKE);
     setDirection(INITIAL_DIRECTION);
@@ -108,7 +123,7 @@ export const useSnakeGame = () => {
     setIsStarted(true);
   };
 
-  // 🔴 Reset
+  // Reset
   const resetGame = () => {
     if (!window.confirm("Reset everything?")) return;
 
@@ -121,6 +136,7 @@ export const useSnakeGame = () => {
     setIsStarted(false);
 
     setHighScore(0);
+
     localStorage.setItem("highScore", 0);
   };
 
@@ -134,5 +150,6 @@ export const useSnakeGame = () => {
     resetGame,
     startGame,
     isStarted,
+    setDirection,
   };
 };
