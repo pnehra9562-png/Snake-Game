@@ -149,8 +149,8 @@ button:active {
   transform: scale(0.95);
 }
 
-/* Reset Button */
-button:last-child {
+/* Reset Button Only */
+.buttons button:last-child {
   background: linear-gradient(135deg, #ff3b3b, #ff0000);
   color: white;
 }
