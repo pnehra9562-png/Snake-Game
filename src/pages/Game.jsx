@@ -17,7 +17,6 @@ const Game = () => {
 
   return (
     <div className="game-container">
-
       <div className="score">
         Score: <span>{score}</span>
       </div>
@@ -26,11 +25,7 @@ const Game = () => {
         High Score: <span>{highScore}</span>
       </div>
 
-      {!isStarted && (
-        <button onClick={startGame}>
-          Start Game
-        </button>
-      )}
+      {!isStarted && <button onClick={startGame}>Start Game</button>}
 
       <div className="controls-area">
         {gameOver && (
@@ -50,18 +45,17 @@ const Game = () => {
       {/* Mobile Controls */}
       {isStarted && (
         <div className="mobile-controls">
-          <button onClick={() => setDirection("UP")}>⬆</button>
+          <button onClick={() => setDirection("UP")}>↑</button>
 
           <div className="middle-controls">
-            <button onClick={() => setDirection("LEFT")}>⬅</button>
+            <button onClick={() => setDirection("LEFT")}>←</button>
 
-            <button onClick={() => setDirection("DOWN")}>⬇</button>
+            <button onClick={() => setDirection("DOWN")}>↓</button>
 
-            <button onClick={() => setDirection("RIGHT")}>➡</button>
+            <button onClick={() => setDirection("RIGHT")}>→</button>
           </div>
         </div>
       )}
-
     </div>
   );
 };
